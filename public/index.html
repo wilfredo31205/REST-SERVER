@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google </title>
     
-    <meta name="google-signin-client_id" content="518314209021-evbt8194si9hm96ci0n956hk0ap4jh4i.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="582094490280-hcm6ckvqq3kelko83hchrtld5ems9ov4.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="582094490280-hcm6ckvqq3kelko83hchrtld5ems9ov4.apps.googleusercontent.com">
 
 </head>
 <body>
@@ -21,25 +22,56 @@
 
 
 
-
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+<a href="#" onclick="signOut();">Sign out</a>
 
 
 <script>
 
 
+   console.log(window.location.hostname.includes('localhost')) // nos permite ver el host y otras propiedades mas 
+  //includes('localhot')) significa que estoy en la nueva local , estoy en desarrollo 
+
+  
+  
+  
+
+
+
+
+
 function onSignIn(googleUser) {
-  const  profile = googleUser.getBasicProfile();
+  var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 
+  var id_token = googleUser.getAuthResponse().id_token;
+
+  console.log(id_token);
+
+
 
 
 }
 
+
+
+function signOut() { 
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+
 </script>
+
+
+
     
 </body>
 </html>
